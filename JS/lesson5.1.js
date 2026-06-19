@@ -285,11 +285,19 @@ document.getElementById("SecondName").addEventListener("change", (e)=> {
 //Year of birth
 
 document.getElementById("YearOfBirth").addEventListener("change", (e)=> {
-    let year = +e.target.value
+    let year = e.target.value
+    year = year.trim()
 
     const YearOfBirthError = document.getElementById("YearOfBirthError")
     YearOfBirthError.style.color = "red"
 
+    if (year.length === 0) {
+        YearOfBirthError.textContent = "Year of birth is empty"
+        arrChecks[2] = false;
+        return;
+    }
+
+    year = +year
     if (isNaN(year)) {
         YearOfBirthError.textContent = "Year of birth must contain only digits"
         arrChecks[2] = false;
